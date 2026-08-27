@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TAXISnet Old UI — Επίδειξη components</title>
+<link rel="stylesheet" href="taxisnet.css">
+</head>
+<body class="tx-page">
+
+<div class="tx-frame">
+
+  <!-- ============ HEADER ============ -->
+  <header class="tx-header">
+    <div class="tx-header__logo">
+      <span class="tx-header__mark" aria-hidden="true"></span>
+      <span class="tx-header__title">
+        <strong>ΑΑΔΕ</strong>
+        <span>Ανεξάρτητη Αρχή<br>Δημοσίων Εσόδων</span>
+      </span>
+    </div>
+    <div class="tx-header__brand"><i>my</i><b>AADE</b></div>
+    <div class="tx-header__gov">
+      <span class="tx-header__seal" aria-hidden="true"></span>
+      ΕΛΛΗΝΙΚΗ ΔΗΜΟΚΡΑΤΙΑ
+    </div>
+  </header>
+
+  <!-- ============ NAVBAR ============ -->
+  <nav class="tx-nav" aria-label="Κύρια πλοήγηση">
+    <ul class="tx-nav__list">
+      <li class="tx-nav__item tx-nav__item--disabled"><a class="tx-nav__link" href="#"><span>Επιλογή ρόλου</span></a></li>
+      <li class="tx-nav__item"><a class="tx-nav__link" href="#"><span>Ο λογαριασμός μου</span></a></li>
+      <li class="tx-nav__item tx-nav__item--active"><a class="tx-nav__link" href="#"><span>Εφαρμογές TAXISnet</span></a></li>
+      <li class="tx-nav__item"><a class="tx-nav__link" href="#"><span>Προσωπ.Πληρ/ση</span></a></li>
+      <li class="tx-nav__item"><a class="tx-nav__link" href="#"><span>Αποσύνδεση</span></a></li>
+    </ul>
+  </nav>
+
+  <!-- ============ ΛΩΡΙΔΑ ΜΗΝΥΜΑΤΩΝ ============ -->
+  <div class="tx-strip">
+    <span>Έχετε <b>26</b> νέα μηνύματα. Πατήστε <a href="#">προβολή</a> για να μεταβείτε στα εισερχόμενα μηνύματά σας.</span>
+    <button class="tx-strip__close" type="button" data-tx-dismiss=".tx-strip" aria-label="Απόκρυψη ειδοποίησης">×</button>
+  </div>
+
+  <!-- ============ ΜΠΑΡΑ ΧΡΗΣΤΗ ============ -->
+  <div class="tx-userbar">
+    Α.Φ.Μ.: 123456789 - ΠΑΠΑΔΟΠΟΥΛΟΣ ΓΕΩΡΓΙΟΣ ΤΟΥ ΙΩΑΝΝΗ
+    <span class="tx-userbar__right">Τελευταία σύνδεση: 27/08/2026 14:58</span>
+  </div>
+
+  <!-- ============ LAYOUT ============ -->
+  <div class="tx-layout">
+
+    <!-- ---- SIDEBAR ---- -->
+    <aside class="tx-sidebar">
+      <ul class="tx-menu">
+        <li class="tx-menu__item tx-menu__item--active"><a class="tx-menu__link" href="#" aria-current="page">Αρχική Σελίδα</a></li>
+        <li class="tx-menu__item"><a class="tx-menu__link" href="#">Διαχείριση λογαριασμού</a></li>
+        <li class="tx-menu__item"><a class="tx-menu__link" href="#">Εξουσιοδοτήσεις</a></li>
+        <li class="tx-menu__item">
+          <a class="tx-menu__link" href="#">Εφαρμογές φορολ. προφίλ</a>
+          <ul class="tx-menu__sub">
+            <li><a class="tx-menu__link" href="#">Φυσικά πρόσωπα</a></li>
+            <li><a class="tx-menu__link" href="#">Νομικά πρόσωπα</a></li>
+          </ul>
+        </li>
+        <li class="tx-menu__item"><a class="tx-menu__link" href="#">Συντομεύσεις εφαρμογών</a></li>
+        <li class="tx-menu__item"><a class="tx-menu__link" href="#">e-Κοινοποιήσεις</a></li>
+      </ul>
+    </aside>
+
+    <!-- ---- MAIN ---- -->
+    <main class="tx-main">
+
+      <h1 class="tx-title">Εφαρμογές TAXISnet</h1>
+
+      <nav class="tx-breadcrumb" aria-label="Διαδρομή">
+        <a href="#">Αρχική</a><span class="tx-breadcrumb__sep">›</span>
+        <a href="#">Εφαρμογές</a><span class="tx-breadcrumb__sep">›</span>
+        <span>Εφαρμογές TAXISnet</span>
+      </nav>
+
+      <div class="tx-cols">
+        <div class="tx-cols__main">
+
+          <!-- ===== Λίστα εφαρμογών ===== -->
+          <ul class="tx-applist">
+            <li><a class="tx-applist__link" href="#">Eispraxisnet myAADE</a></li>
+            <li><a class="tx-applist__link" href="#">Δήλωση Τέλους Ανακύκλωσης</a></li>
+            <li>
+              <a class="tx-applist__link" href="#">ΔΗΛΩΣΗ ΦΟΡΟΥ ΠΛΟΙΩΝ ΔΕΥΤΕΡΗΣ ΚΑΤΗΓΟΡΙΑΣ</a>
+              <ul class="tx-applist__sub">
+                <li><a href="#">με ξένη σημαία</a></li>
+                <li><a href="#">με σημαία ΕΕ και ΕΟΧ πλην της Ελληνικής</a></li>
+                <li><a href="#">με Ελληνική σημαία</a></li>
+              </ul>
+            </li>
+            <li>
+              <a class="tx-applist__link tx-applist__link--star" href="#">Προσωποποιημένη Πληροφόρηση</a>
+              <ul class="tx-applist__sub">
+                <li><a href="#">Στοιχεία Μητρώου</a></li>
+                <li><a href="#">Στοιχεία Οφειλών</a></li>
+                <li><a href="#">Φορολογικό Ημερολόγιο</a></li>
+              </ul>
+            </li>
+            <li><a class="tx-applist__link" href="#">Ψηφιακό Αποδεικτικό Είσπραξης</a></li>
+          </ul>
+
+          <!-- ===== Alerts ===== -->
+          <h2 class="tx-title tx-title--plain">Μηνύματα κατάστασης</h2>
+
+          <div class="tx-alert">
+            <div class="tx-alert__body"><span class="tx-alert__title">Ενημέρωση</span>
+              Η υποβολή δηλώσεων για τη χρήση 2025 ξεκινά στις 15/03/2026.</div>
+            <button class="tx-alert__close" type="button" data-tx-dismiss=".tx-alert" aria-label="Κλείσιμο">×</button>
+          </div>
+
+          <div class="tx-alert tx-alert--success">
+            <div class="tx-alert__body"><span class="tx-alert__title">Η δήλωση υποβλήθηκε</span>
+              Αριθμός καταχώρησης 2026/0043117. Το αποδεικτικό είναι διαθέσιμο στα εισερχόμενα.</div>
+          </div>
+
+          <div class="tx-alert tx-alert--warn">
+            <div class="tx-alert__body">Εκκρεμεί επιβεβαίωση του IBAN για την επιστροφή φόρου.</div>
+          </div>
+
+          <div class="tx-alert tx-alert--error">
+            <div class="tx-alert__body"><span class="tx-alert__title">Η υποβολή απορρίφθηκε</span>
+              <ul>
+                <li>Ο κωδικός 011 δεν συμφωνεί με τα στοιχεία μητρώου.</li>
+                <li>Το ποσό στον κωδικό 301 υπερβαίνει το δηλωθέν εισόδημα.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- ===== Tabs ===== -->
+          <h2 class="tx-title tx-title--plain">Καρτέλες</h2>
+          <div class="tx-tabs" data-tx-tabs>
+            <ul class="tx-tabs__list">
+              <li><button class="tx-tabs__btn" type="button" id="t1" aria-controls="p1" aria-selected="true">Στοιχεία δήλωσης</button></li>
+              <li><button class="tx-tabs__btn" type="button" id="t2" aria-controls="p2">Εκκαθάριση</button></li>
+              <li><button class="tx-tabs__btn" type="button" id="t3" aria-controls="p3">Συνημμένα</button></li>
+            </ul>
+            <div class="tx-tabs__panel" id="p1" aria-labelledby="t1">
+              <table class="tx-kv">
+                <tr><th>Φορολογικό έτος</th><td>2025</td></tr>
+                <tr><th>Είδος δήλωσης</th><td>Αρχική (Ε1)</td></tr>
+                <tr><th>Κατάσταση</th><td><span class="tx-badge tx-badge--success">Οριστικοποιημένη</span></td></tr>
+              </table>
+            </div>
+            <div class="tx-tabs__panel" id="p2" aria-labelledby="t2" hidden>
+              <p>Χρεωστικό υπόλοιπο <strong>412,60 €</strong> σε τρεις μηνιαίες δόσεις.</p>
+              <div class="tx-bar" aria-label="Εξόφληση 33%"><div class="tx-bar__fill" style="width:33%"></div></div>
+            </div>
+            <div class="tx-tabs__panel" id="p3" aria-labelledby="t3" hidden>
+              <p>Δεν έχουν επισυναφθεί δικαιολογητικά.</p>
+              <button class="tx-btn tx-btn--sm" type="button">Επισύναψη αρχείου</button>
+            </div>
+          </div>
+
+          <!-- ===== Πίνακας ===== -->
+          <h2 class="tx-title tx-title--plain">Πίνακας δεδομένων</h2>
+          <table class="tx-table" data-tx-sortable>
+            <caption>Στοιχεία οφειλών</caption>
+            <thead>
+              <tr>
+                <th data-tx-sort="text">Ταυτότητα οφειλής</th>
+                <th data-tx-sort="text">Περιγραφή</th>
+                <th data-tx-sort="date">Λήξη</th>
+                <th data-tx-sort="number">Ποσό (€)</th>
+                <th>Κατάσταση</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>1234 5678 9012 3456</td><td>ΕΝ.Φ.Ι.Α. 2026 — Δόση Α΄</td><td>30/09/2026</td><td class="tx-table__num">184,20</td><td><span class="tx-badge tx-badge--warn">Σε προθεσμία</span></td></tr>
+              <tr><td>2345 6789 0123 4567</td><td>Φόρος εισοδήματος 2025</td><td>31/07/2026</td><td class="tx-table__num">412,60</td><td><span class="tx-badge tx-badge--error">Ληξιπρόθεσμη</span></td></tr>
+              <tr><td>3456 7890 1234 5678</td><td>Τέλη κυκλοφορίας 2026</td><td>31/12/2026</td><td class="tx-table__num">120,00</td><td><span class="tx-badge tx-badge--muted">Μη βεβαιωμένη</span></td></tr>
+            </tbody>
+            <tfoot><tr><td colspan="3">Σύνολο</td><td class="tx-table__num">716,80</td><td></td></tr></tfoot>
+          </table>
+
+          <ul class="tx-pager">
+            <li class="tx-pager__item"><a class="tx-pager__link" href="#">«</a></li>
+            <li class="tx-pager__item tx-pager__item--active"><a class="tx-pager__link" href="#">1</a></li>
+            <li class="tx-pager__item"><a class="tx-pager__link" href="#">2</a></li>
+            <li class="tx-pager__item"><a class="tx-pager__link" href="#">3</a></li>
+            <li class="tx-pager__item"><a class="tx-pager__link" href="#">»</a></li>
+            <li class="tx-pager__info">Εγγραφές 1-3 από 9</li>
+          </ul>
+
+          <!-- ===== Wizard ===== -->
+          <h2 class="tx-title tx-title--plain">Βήματα υποβολής</h2>
+          <ol class="tx-steps">
+            <li class="tx-steps__item tx-steps__item--done"><b>1. Στοιχεία</b> Ολοκληρώθηκε</li>
+            <li class="tx-steps__item tx-steps__item--current"><b>2. Έλεγχος</b> Σε εξέλιξη</li>
+            <li class="tx-steps__item"><b>3. Υποβολή</b> Εκκρεμεί</li>
+          </ol>
+
+          <!-- ===== Φόρμα ===== -->
+          <h2 class="tx-title tx-title--plain">Φόρμα</h2>
+          <form data-tx-validate novalidate>
+            <div class="tx-alert tx-alert--error" data-tx-summary hidden>
+              <div class="tx-alert__body">Ελέγξτε τα πεδία με κόκκινο περίγραμμα και υποβάλετε ξανά.</div>
+            </div>
+
+            <fieldset class="tx-fieldset">
+              <legend>Στοιχεία φορολογουμένου</legend>
+
+              <div class="tx-field">
+                <label class="tx-label" for="f-afm">Α.Φ.Μ. <span class="tx-req">*</span></label>
+                <div class="tx-field__control">
+                  <input class="tx-input tx-input--md" id="f-afm" name="afm" required data-tx-rule="afm" data-tx-mask="digits" maxlength="9" inputmode="numeric">
+                  <span class="tx-hint">9 ψηφία. Ελέγχεται το ψηφίο ελέγχου (mod 11).</span>
+                </div>
+              </div>
+
+              <div class="tx-field">
+                <label class="tx-label" for="f-amka">Α.Μ.Κ.Α.</label>
+                <div class="tx-field__control">
+                  <input class="tx-input tx-input--md" id="f-amka" name="amka" data-tx-rule="amka" data-tx-mask="digits" maxlength="11" inputmode="numeric">
+                </div>
+              </div>
+
+              <div class="tx-field">
+                <label class="tx-label" for="f-doy">Δ.Ο.Υ. <span class="tx-req">*</span></label>
+                <div class="tx-field__control">
+                  <select class="tx-select" id="f-doy" name="doy" required>
+                    <option value="">-- Επιλέξτε --</option>
+                    <option>Α΄ Αθηνών</option>
+                    <option>ΣΤ΄ Θεσσαλονίκης</option>
+                    <option>Ξάνθης</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="tx-field">
+                <label class="tx-label" for="f-iban">IBAN επιστροφής</label>
+                <div class="tx-field__control">
+                  <input class="tx-input" id="f-iban" name="iban" size="34" data-tx-rule="iban" data-tx-mask="iban" placeholder="GR00 0000 0000 0000 0000 0000 000">
+                </div>
+              </div>
+
+              <div class="tx-field">
+                <label class="tx-label" for="f-email">E-mail <span class="tx-req">*</span></label>
+                <div class="tx-field__control">
+                  <input class="tx-input tx-input--md" id="f-email" name="email" required data-tx-rule="email">
+                </div>
+              </div>
+
+              <div class="tx-field">
+                <span class="tx-label">Τρόπος ενημέρωσης</span>
+                <div class="tx-field__control">
+                  <label class="tx-check"><input type="radio" name="notify" checked> Μέσω e-mail</label>
+                  <label class="tx-check"><input type="radio" name="notify"> Μέσω SMS</label>
+                </div>
+              </div>
+
+              <div class="tx-field">
+                <label class="tx-label" for="f-notes">Παρατηρήσεις
+                  <span class="tx-tip" data-tx-tip="Έως 500 χαρακτήρες. Οι παρατηρήσεις δεν αντικαθιστούν τα δικαιολογητικά.">(;)</span>
+                </label>
+                <div class="tx-field__control">
+                  <textarea class="tx-textarea" id="f-notes" name="notes" rows="3"></textarea>
+                </div>
+              </div>
+
+              <div class="tx-field">
+                <span class="tx-label">&nbsp;</span>
+                <div class="tx-field__control">
+                  <label class="tx-check"><input type="checkbox" name="agree" required> Δηλώνω υπεύθυνα ότι τα στοιχεία είναι ακριβή.</label>
+                </div>
+              </div>
+            </fieldset>
+
+            <div class="tx-btnbar tx-btnbar--right">
+              <button class="tx-btn" type="reset">Καθαρισμός</button>
+              <button class="tx-btn" type="button" data-tx-modal-open="m-help">Οδηγίες</button>
+              <button class="tx-btn tx-btn--primary" type="submit">Υποβολή δήλωσης</button>
+            </div>
+          </form>
+
+          <!-- ===== Accordion ===== -->
+          <h2 class="tx-title tx-title--plain">Συχνές ερωτήσεις</h2>
+          <div class="tx-acc" data-tx-accordion data-tx-single>
+            <div class="tx-acc__item">
+              <button class="tx-acc__btn" type="button" aria-controls="a1" aria-expanded="true">Πώς ανακτώ τους κωδικούς μου;</button>
+              <div class="tx-acc__panel" id="a1">
+                <p>Από τη σελίδα σύνδεσης επιλέξτε «Υπενθύμιση κωδικών» και ακολουθήστε τα βήματα με τον Α.Φ.Μ. σας.</p>
+              </div>
+            </div>
+            <div class="tx-acc__item">
+              <button class="tx-acc__btn" type="button" aria-controls="a2" aria-expanded="false">Πότε ενημερώνονται τα στοιχεία οφειλών;</button>
+              <div class="tx-acc__panel" id="a2" hidden>
+                <p>Οι πληρωμές καταχωρούνται εντός δύο εργάσιμων ημερών από την εξόφληση.</p>
+              </div>
+            </div>
+            <div class="tx-acc__item">
+              <button class="tx-acc__btn" type="button" aria-controls="a3" aria-expanded="false">Μπορώ να εξουσιοδοτήσω λογιστή;</button>
+              <div class="tx-acc__panel" id="a3" hidden>
+                <p>Ναι, από το μενού «Εξουσιοδοτήσεις» δηλώνετε τον Α.Φ.Μ. του εκπροσώπου και το εύρος πρόσβασης.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- ===== Κουμπιά & λοιπά ===== -->
+          <h2 class="tx-title tx-title--plain">Κουμπιά και ενδείξεις</h2>
+          <div class="tx-box tx-box--white">
+            <div class="tx-box__title">Ενέργειες</div>
+            <div class="tx-btnbar tx-btnbar--plain">
+              <button class="tx-btn tx-btn--primary" type="button" onclick="TX.toast('Η αίτηση αποθηκεύτηκε.','success')">Αποθήκευση</button>
+              <button class="tx-btn" type="button" onclick="TX.toast('Δημιουργήθηκε προεπισκόπηση.')">Προεπισκόπηση</button>
+              <button class="tx-btn tx-btn--danger" type="button" data-tx-modal-open="m-del">Διαγραφή</button>
+              <button class="tx-btn" type="button" disabled>Οριστικοποίηση</button>
+              <button class="tx-btn tx-btn--link" type="button">Επιστροφή στη λίστα</button>
+            </div>
+            <p class="tx-mt"><span class="tx-loading">Αναμονή απάντησης από το TAXIS…</span></p>
+          </div>
+
+        </div>
+
+        <!-- ---- ASIDE ---- -->
+        <div class="tx-aside">
+          <section class="tx-help">
+            <h2 class="tx-help__title">Βοήθεια</h2>
+            <div class="tx-help__body">
+              <p>Στη σελίδα αυτή μπορείτε να δείτε όλες τις εφαρμογές οι οποίες είναι διαθέσιμες στο TAXISnet.</p>
+              <p>Για να μεταβείτε σε κάποια εφαρμογή πατήστε τον σύνδεσμο πάνω στην περιγραφή της.</p>
+              <p>Για να βρείτε ποιες εφαρμογές μπορείτε να χρησιμοποιήσετε με βάση το τρέχον φορολογικό σας προφίλ πατήστε τον σύνδεσμο <a href="#">Εφαρμογές φορολογικού προφίλ</a></p>
+              <p>Για να επιλέξετε συντομεύσεις πατήστε τον σύνδεσμο <a href="#">Συντομεύσεις</a></p>
+            </div>
+          </section>
+
+          <section class="tx-help tx-help--info">
+            <h2 class="tx-help__title">Προθεσμίες</h2>
+            <div class="tx-help__body">
+              <p><strong>31/08/2026</strong><br>Δήλωση Ε9</p>
+              <p><strong>30/09/2026</strong><br>Α΄ δόση ΕΝ.Φ.Ι.Α.</p>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <footer class="tx-footer">
+    <span>Ανεξάρτητη Αρχή Δημοσίων Εσόδων — Επίδειξη UI library</span>
+    <span>Έκδοση 1.0</span>
+  </footer>
+</div>
+
+<!-- ============ MODALS ============ -->
+<div class="tx-modal" id="m-help">
+  <div class="tx-modal__dialog" role="document">
+    <div class="tx-modal__head">
+      <span>Οδηγίες συμπλήρωσης</span>
+      <button class="tx-modal__close" type="button" data-tx-modal-close aria-label="Κλείσιμο">×</button>
+    </div>
+    <div class="tx-modal__body">
+      <p>Συμπληρώστε τον Α.Φ.Μ. χωρίς κενά ή τελείες. Τα πεδία με αστερίσκο <span class="tx-req">*</span> είναι υποχρεωτικά.</p>
+      <p>Ο έλεγχος IBAN γίνεται τοπικά με τον αλγόριθμο mod-97 και δεν επικοινωνεί με την τράπεζα.</p>
+    </div>
+    <div class="tx-modal__foot">
+      <button class="tx-btn tx-btn--primary" type="button" data-tx-modal-close>Κλείσιμο</button>
+    </div>
+  </div>
+</div>
+
+<div class="tx-modal" id="m-del">
+  <div class="tx-modal__dialog" role="document">
+    <div class="tx-modal__head">
+      <span>Επιβεβαίωση διαγραφής</span>
+      <button class="tx-modal__close" type="button" data-tx-modal-close aria-label="Κλείσιμο">×</button>
+    </div>
+    <div class="tx-modal__body">
+      <p>Η προσωρινή δήλωση θα διαγραφεί οριστικά. Η ενέργεια δεν αναιρείται.</p>
+    </div>
+    <div class="tx-modal__foot">
+      <button class="tx-btn" type="button" data-tx-modal-close>Ακύρωση</button>
+      <button class="tx-btn tx-btn--danger" type="button" data-tx-modal-close onclick="TX.toast('Η δήλωση διαγράφηκε.','error')">Διαγραφή</button>
+    </div>
+  </div>
+</div>
+
+<script src="taxisnet.js"></script>
+</body>
+</html>

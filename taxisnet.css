@@ -1,0 +1,1044 @@
+/* ==========================================================================
+   TAXISnet Old UI — CSS component library
+   Αναπαραγωγή του παλιού design του TAXISnet / myAADE (GSIS legacy look)
+   Χρώματα & διαστάσεις: δειγματοληψία από πραγματικό screenshot της πλατφόρμας.
+   Prefix: .tx-
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Tokens
+   -------------------------------------------------------------------------- */
+:root {
+  /* Παλέτα */
+  --tx-page-bg:      #DAEDF4; /* γαλάζιο φόντο σελίδας */
+  --tx-content-bg:   #F2F5F5; /* φόντο περιοχής περιεχομένου */
+  --tx-white:        #FFFFFF;
+
+  --tx-teal-dark:    #2C7589; /* σκούρο άκρο gradient στα tabs */
+  --tx-teal:         #408B9A; /* κύριο teal (navbar) */
+  --tx-teal-light:   #4099AB; /* ενεργό στοιχείο μενού */
+  --tx-teal-pale:    #7DB9C1; /* ανενεργό/disabled tab */
+
+  --tx-blue-pale:    #D3E4EA; /* στοιχεία πλαϊνού μενού */
+  --tx-blue-bar:     #E3EBEE; /* μπάρα χρήστη */
+
+  --tx-yellow:       #F8FBBA; /* λωρίδα μηνυμάτων */
+  --tx-yellow-line:  #D8DB8A;
+  --tx-yellow-icon:  #EDD133;
+
+  --tx-orange:       #E56D31; /* τίτλοι ενοτήτων */
+  --tx-rule:         #D3C89F; /* λεπτή γραμμή κάτω από τίτλο */
+
+  --tx-olive:        #899370; /* κεφαλίδα πλαισίου βοήθειας */
+  --tx-olive-bg:     #EBF0DC;
+
+  --tx-ink:          #1A1A1A; /* κείμενο */
+  --tx-ink-soft:     #444444;
+  --tx-link:         #6C6C6C; /* οι σύνδεσμοι είναι γκρι + underline */
+  --tx-link-hover:   #E56D31;
+  --tx-person:       #2D5BCD;
+
+  --tx-border:       #5A5A5A; /* περίγραμμα πλαισίων */
+  --tx-border-soft:  #AEAEAE;
+  --tx-zebra:        #E6E6E6; /* εναλλασσόμενες γραμμές */
+  --tx-field-border: #7F9DB9; /* κλασικό μπλε-γκρι πεδίων */
+
+  --tx-red:          #B02418;
+  --tx-red-bg:       #FBE3E1;
+  --tx-red-line:     #C58C86;
+  --tx-green:        #4A7A2B;
+  --tx-green-bg:     #E7F1DA;
+  --tx-green-line:   #9CB582;
+
+  /* Τυπογραφία — μικρά μεγέθη, όπως τα legacy GSIS sites */
+  --tx-font: Verdana, Geneva, "DejaVu Sans", Tahoma, Arial, sans-serif;
+  --tx-fs:      11px;
+  --tx-fs-sm:   10px;
+  --tx-fs-lg:   12px;
+  --tx-fs-title:13px;
+
+  /* Μετρικά */
+  --tx-frame-w:   990px;
+  --tx-sidebar-w: 168px;
+  --tx-aside-w:   160px;
+}
+
+/* --------------------------------------------------------------------------
+   2. Βάση
+   -------------------------------------------------------------------------- */
+.tx-page {
+  margin: 0;
+  padding: 0;
+  background: var(--tx-page-bg);
+  font-family: var(--tx-font);
+  font-size: var(--tx-fs);
+  line-height: 1.45;
+  color: var(--tx-ink);
+  -webkit-text-size-adjust: 100%;
+}
+
+.tx-page *,
+.tx-page *::before,
+.tx-page *::after { box-sizing: border-box; }
+
+/* Σημ.: :where() κρατά μηδενική specificity, ώστε οι κανόνες των components
+   (π.χ. .tx-nav__link) να υπερισχύουν χωρίς !important. */
+.tx-page :where(a) {
+  color: var(--tx-link);
+  text-decoration: underline;
+}
+.tx-page :where(a:hover, a:focus-visible) { color: var(--tx-link-hover); }
+
+.tx-page :focus-visible {
+  outline: 2px solid var(--tx-orange);
+  outline-offset: 1px;
+}
+
+.tx-page p { margin: 0 0 10px; }
+.tx-page hr {
+  border: 0;
+  border-top: 1px solid var(--tx-rule);
+  margin: 8px 0;
+}
+
+/* Το [hidden] πρέπει να υπερισχύει των display:flex/inline-flex components */
+.tx-page [hidden] { display: none !important; }
+
+.tx-page input,
+.tx-page select,
+.tx-page textarea,
+.tx-page button { accent-color: var(--tx-teal); }
+
+/* Βοηθητικά */
+.tx-hidden { display: none !important; }
+.tx-sr {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.tx-right { text-align: right; }
+.tx-center { text-align: center; }
+.tx-nowrap { white-space: nowrap; }
+.tx-strong { font-weight: bold; }
+.tx-muted { color: #7A7A7A; }
+.tx-small { font-size: var(--tx-fs-sm); }
+.tx-mono { font-family: "Courier New", Courier, monospace; }
+.tx-mt { margin-top: 10px; }
+.tx-mb { margin-bottom: 10px; }
+
+/* --------------------------------------------------------------------------
+   3. Frame / Header
+   -------------------------------------------------------------------------- */
+.tx-frame {
+  width: var(--tx-frame-w);
+  margin: 0 auto;
+  background: var(--tx-content-bg);
+  border-left: 1px solid var(--tx-border-soft);
+  border-right: 1px solid var(--tx-border-soft);
+  border-bottom: 1px solid var(--tx-border-soft);
+}
+
+.tx-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 14px;
+  background: var(--tx-white);
+  border-top: 3px solid #333;
+}
+.tx-header__logo { display: flex; align-items: center; gap: 8px; }
+.tx-header__mark {
+  width: 42px; height: 42px;
+  background: var(--tx-white);
+  border: 2px solid #16416E;
+  position: relative;
+}
+.tx-header__mark::before,
+.tx-header__mark::after {
+  content: "";
+  position: absolute; left: 4px; right: 4px;
+  border-top: 2px solid #16416E;
+}
+.tx-header__mark::before { top: 9px;  transform: skewY(-16deg); }
+.tx-header__mark::after  { top: 24px; transform: skewY(-16deg); }
+.tx-header__title { line-height: 1.2; }
+.tx-header__title strong {
+  display: block;
+  font-size: 22px;
+  letter-spacing: .5px;
+  color: #16416E;
+}
+.tx-header__title span {
+  display: block;
+  font-size: var(--tx-fs);
+  font-weight: bold;
+  color: #16416E;
+}
+.tx-header__brand {
+  font-size: 26px;
+  color: #1E76BD;
+  letter-spacing: .5px;
+}
+.tx-header__brand i { font-style: italic; font-weight: bold; }
+.tx-header__brand b { font-weight: bold; }
+.tx-header__gov {
+  text-align: center;
+  font-size: var(--tx-fs-sm);
+  font-weight: bold;
+  color: #16416E;
+}
+.tx-header__gov .tx-header__seal {
+  display: block;
+  width: 34px; height: 34px;
+  margin: 0 auto 3px;
+  border-radius: 50%;
+  border: 2px solid #16416E;
+  position: relative;
+}
+.tx-header__gov .tx-header__seal::before {
+  content: "";
+  position: absolute; inset: 5px;
+  background:
+    linear-gradient(#16416E,#16416E) center/100% 4px no-repeat,
+    linear-gradient(#16416E,#16416E) center/4px 100% no-repeat;
+}
+
+/* --------------------------------------------------------------------------
+   4. Navbar (λοξά tabs)
+   -------------------------------------------------------------------------- */
+.tx-nav {
+  background: var(--tx-teal);
+  padding: 0;
+  overflow: hidden;
+}
+.tx-nav__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+.tx-nav__item { margin: 0; }
+.tx-nav__link {
+  display: block;
+  padding: 3px 16px 2px;
+  font-size: var(--tx-fs);
+  font-weight: bold;
+  color: var(--tx-white);
+  text-decoration: none;
+  background: linear-gradient(180deg, var(--tx-teal-dark) 0%, #3E8A9C 100%);
+  border-left: 2px solid var(--tx-white);
+  transform: skewX(-20deg);
+}
+.tx-nav__link > span { display: block; transform: skewX(20deg); }
+.tx-nav__link:hover,
+.tx-nav__link:focus-visible {
+  color: var(--tx-white);
+  background: linear-gradient(180deg, #3E8A9C 0%, #5AA7B6 100%);
+}
+.tx-nav__item--active > .tx-nav__link {
+  background: linear-gradient(180deg, #4E9DAE 0%, #6FB7C2 100%);
+}
+.tx-nav__item--disabled > .tx-nav__link {
+  color: var(--tx-teal-pale);
+  background: linear-gradient(180deg, #2C7589 0%, #35809A 100%);
+  cursor: default;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   5. Λωρίδα ειδοποιήσεων + μπάρα χρήστη
+   -------------------------------------------------------------------------- */
+.tx-strip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 8px;
+  background: var(--tx-yellow);
+  border-top: 1px solid var(--tx-yellow-line);
+  border-bottom: 1px solid var(--tx-yellow-line);
+  font-size: var(--tx-fs);
+}
+.tx-strip::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 16px; height: 16px;
+  background: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Crect x='.5' y='2.5' width='15' height='11' fill='%23FFFFFF' stroke='%238A7A00'/%3E%3Cpath d='M1 3l7 6 7-6' fill='none' stroke='%23EDD133' stroke-width='2'/%3E%3C/svg%3E") no-repeat center;
+}
+.tx-strip b { font-weight: bold; }
+.tx-strip a { font-weight: bold; }
+.tx-strip__close {
+  margin-left: auto;
+  border: 0; background: none;
+  font: bold 12px/1 var(--tx-font);
+  color: var(--tx-ink-soft);
+  cursor: pointer;
+  padding: 2px 4px;
+}
+
+.tx-userbar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  background: var(--tx-blue-bar);
+  border-bottom: 1px solid var(--tx-border-soft);
+  font-size: var(--tx-fs);
+  font-weight: bold;
+  color: var(--tx-ink);
+}
+.tx-userbar::before {
+  content: "";
+  width: 12px; height: 13px;
+  background: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='13'%3E%3Ccircle cx='6' cy='4' r='3' fill='%232D5BCD'/%3E%3Cpath d='M0 13c0-4 12-4 12 0z' fill='%232D5BCD'/%3E%3C/svg%3E") no-repeat center;
+}
+.tx-userbar__right { margin-left: auto; font-weight: normal; }
+
+/* --------------------------------------------------------------------------
+   6. Layout: sidebar / main / aside
+   -------------------------------------------------------------------------- */
+.tx-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+}
+.tx-sidebar {
+  flex: 0 0 var(--tx-sidebar-w);
+  width: var(--tx-sidebar-w);
+  border-right: 1px solid var(--tx-border-soft);
+  background: var(--tx-content-bg);
+}
+.tx-main {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 6px 12px 24px;
+}
+.tx-cols { display: flex; gap: 14px; align-items: flex-start; }
+.tx-cols__main { flex: 1 1 auto; min-width: 0; }
+.tx-aside { flex: 0 0 var(--tx-aside-w); width: var(--tx-aside-w); }
+
+/* Πλαϊνό μενού */
+.tx-menu { list-style: none; margin: 0; padding: 0; }
+.tx-menu__link {
+  display: block;
+  padding: 4px 8px 4px 18px;
+  background: var(--tx-blue-pale);
+  border-bottom: 1px solid var(--tx-border-soft);
+  color: var(--tx-link);
+  font-weight: bold;
+  text-decoration: none;
+  position: relative;
+}
+.tx-menu__link::before {
+  content: "\2514";
+  position: absolute;
+  left: 6px; top: 4px;
+  color: var(--tx-orange);
+  font-weight: bold;
+}
+.tx-menu__link:hover { color: var(--tx-orange); background: #E2EFF3; }
+.tx-menu__item--active > .tx-menu__link,
+.tx-menu__link[aria-current="page"] {
+  background: var(--tx-teal-light);
+  color: var(--tx-white);
+  border-bottom-color: var(--tx-teal-dark);
+}
+.tx-menu__item--active > .tx-menu__link::before,
+.tx-menu__link[aria-current="page"]::before {
+  content: "";
+  top: 8px; left: 7px;
+  width: 0; height: 0;
+  border-left: 5px solid var(--tx-white);
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+}
+/* Υπο-μενού */
+.tx-menu__sub { list-style: none; margin: 0; padding: 0; }
+.tx-menu__sub .tx-menu__link {
+  padding-left: 28px;
+  font-weight: normal;
+  background: #E7F0F4;
+}
+.tx-menu__sub .tx-menu__link::before { left: 16px; }
+
+/* --------------------------------------------------------------------------
+   7. Τίτλος σελίδας / breadcrumb
+   -------------------------------------------------------------------------- */
+.tx-title {
+  margin: 4px 0 10px;
+  padding: 0 0 4px;
+  border-bottom: 1px solid var(--tx-rule);
+  font-size: var(--tx-fs-title);
+  font-weight: bold;
+  color: var(--tx-orange);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.tx-title::before {
+  content: "";
+  width: 0; height: 0;
+  border-left: 7px solid var(--tx-orange);
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+.tx-title--plain::before { display: none; }
+
+.tx-breadcrumb {
+  margin: 0 0 8px;
+  padding: 3px 6px;
+  background: var(--tx-blue-bar);
+  border: 1px solid var(--tx-border-soft);
+  font-size: var(--tx-fs-sm);
+  color: var(--tx-ink-soft);
+}
+.tx-breadcrumb a { text-decoration: none; }
+.tx-breadcrumb a:hover { text-decoration: underline; }
+.tx-breadcrumb__sep { padding: 0 4px; color: var(--tx-orange); font-weight: bold; }
+
+/* --------------------------------------------------------------------------
+   8. Πλαίσια (boxes)
+   -------------------------------------------------------------------------- */
+.tx-box {
+  border: 1px solid var(--tx-border);
+  background: var(--tx-content-bg);
+  padding: 10px 12px;
+  margin: 0 0 12px;
+}
+.tx-box--white { background: var(--tx-white); }
+.tx-box__title {
+  margin: -10px -12px 10px;
+  padding: 3px 8px;
+  background: linear-gradient(180deg, var(--tx-teal-dark) 0%, #3E8A9C 100%);
+  color: var(--tx-white);
+  font-weight: bold;
+  font-size: var(--tx-fs);
+}
+.tx-box__footer {
+  margin: 10px -12px -10px;
+  padding: 6px 8px;
+  background: var(--tx-blue-bar);
+  border-top: 1px solid var(--tx-border-soft);
+}
+
+/* Πλαίσιο βοήθειας (λαδί) — όπως το «Βοήθεια» δεξιά */
+.tx-help {
+  border: 1px solid var(--tx-olive);
+  background: var(--tx-olive-bg);
+  margin: 0 0 12px;
+}
+.tx-help__title {
+  padding: 3px 6px;
+  background: var(--tx-olive);
+  color: var(--tx-white);
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 1px solid var(--tx-olive);
+}
+.tx-help__body { padding: 8px 8px 4px; }
+.tx-help__body p { margin: 0 0 9px; }
+.tx-help__body a { font-weight: bold; }
+
+.tx-help--info  { border-color: var(--tx-teal); background: #E6F0F4; }
+.tx-help--info  .tx-help__title { background: var(--tx-teal); }
+.tx-help--warn  { border-color: #B9A24A; background: var(--tx-yellow); }
+.tx-help--warn  .tx-help__title { background: #B9A24A; }
+
+/* --------------------------------------------------------------------------
+   9. Alerts
+   -------------------------------------------------------------------------- */
+.tx-alert {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  padding: 6px 8px;
+  margin: 0 0 10px;
+  border: 1px solid var(--tx-border-soft);
+  background: var(--tx-blue-bar);
+}
+.tx-alert::before {
+  content: "i";
+  flex: 0 0 auto;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--tx-teal);
+  color: var(--tx-white);
+  font: bold 10px/14px var(--tx-font);
+  text-align: center;
+}
+.tx-alert__body { flex: 1 1 auto; }
+.tx-alert__title { font-weight: bold; display: block; margin-bottom: 2px; }
+.tx-alert__close {
+  border: 0; background: none; cursor: pointer;
+  color: var(--tx-ink-soft);
+  font: bold 12px/1 var(--tx-font);
+  padding: 2px 4px;
+}
+.tx-alert--success { background: var(--tx-green-bg); border-color: var(--tx-green-line); }
+.tx-alert--success::before { content: "\2713"; background: var(--tx-green); }
+.tx-alert--warn { background: var(--tx-yellow); border-color: var(--tx-yellow-line); }
+.tx-alert--warn::before { content: "!"; background: #B9A24A; }
+.tx-alert--error { background: var(--tx-red-bg); border-color: var(--tx-red-line); }
+.tx-alert--error::before { content: "\00D7"; background: var(--tx-red); font-size: 12px; }
+.tx-alert ul { margin: 4px 0 0; padding-left: 18px; }
+
+/* --------------------------------------------------------------------------
+   10. Λίστα εφαρμογών (όπως «Εφαρμογές TAXISnet»)
+   -------------------------------------------------------------------------- */
+.tx-applist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--tx-border);
+  background: var(--tx-content-bg);
+}
+.tx-applist > li { padding: 8px 10px; }
+.tx-applist__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
+  text-decoration: underline;
+}
+.tx-applist__link::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 18px; height: 18px;
+  background: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18'%3E%3Crect x='.5' y='.5' width='17' height='17' fill='%23FFFFFF' stroke='%235A5A5A'/%3E%3Cpath d='M4.5 3.5h6l3 3v8h-9z' fill='%23DAEDF4' stroke='%232C7589'/%3E%3Cpath d='M10.5 3.5v3h3' fill='none' stroke='%232C7589'/%3E%3C/svg%3E") no-repeat center;
+}
+.tx-applist__link--star::before {
+  background: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18'%3E%3Ccircle cx='9' cy='9' r='8' fill='%23EBF0DC' stroke='%23899370'/%3E%3Cpath d='M9 3.5l1.7 3.5 3.8.5-2.8 2.7.7 3.8L9 12.2l-3.4 1.8.7-3.8L3.5 7.5l3.8-.5z' fill='%23EDD133' stroke='%23A8901F' stroke-width='.6'/%3E%3C/svg%3E") no-repeat center;
+}
+/* Υπο-γραμμές με ζέβρα */
+.tx-applist__sub { list-style: none; margin: 6px 0 0; padding: 0; }
+.tx-applist__sub > li { padding: 3px 6px 3px 56px; }
+.tx-applist__sub > li:nth-child(odd) { background: var(--tx-zebra); }
+.tx-applist__sub a { font-weight: normal; }
+
+/* --------------------------------------------------------------------------
+   11. Πίνακες
+   -------------------------------------------------------------------------- */
+.tx-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--tx-border);
+  background: var(--tx-white);
+  margin: 0 0 12px;
+  font-size: var(--tx-fs);
+}
+.tx-table caption {
+  caption-side: top;
+  text-align: left;
+  padding: 3px 6px;
+  background: var(--tx-blue-bar);
+  border: 1px solid var(--tx-border);
+  border-bottom: 0;
+  font-weight: bold;
+  color: var(--tx-ink);
+}
+.tx-table th,
+.tx-table td {
+  border: 1px solid var(--tx-border-soft);
+  padding: 3px 6px;
+  text-align: left;
+  vertical-align: top;
+}
+.tx-table thead th {
+  background: linear-gradient(180deg, var(--tx-teal-dark) 0%, #3E8A9C 100%);
+  color: var(--tx-white);
+  font-weight: bold;
+  white-space: nowrap;
+  border-color: var(--tx-teal-dark);
+}
+.tx-table tbody tr:nth-child(even) { background: #EDF2F2; }
+.tx-table tbody tr:hover { background: var(--tx-olive-bg); }
+.tx-table tfoot td {
+  background: var(--tx-blue-bar);
+  font-weight: bold;
+}
+.tx-table--compact th,
+.tx-table--compact td { padding: 1px 4px; }
+.tx-table__num { text-align: right; font-family: "Courier New", monospace; }
+
+/* Ταξινόμηση */
+.tx-table th[data-tx-sort] { cursor: pointer; user-select: none; }
+.tx-table th[data-tx-sort]::after { content: " \25C6"; opacity: .35; font-size: 8px; }
+.tx-table th[data-tx-sort][aria-sort="ascending"]::after  { content: " \25B2"; opacity: 1; }
+.tx-table th[data-tx-sort][aria-sort="descending"]::after { content: " \25BC"; opacity: 1; }
+
+/* Πίνακας «ετικέτα → τιμή» */
+.tx-kv { width: 100%; border-collapse: collapse; margin: 0 0 12px; }
+.tx-kv th {
+  width: 34%;
+  text-align: left;
+  font-weight: bold;
+  padding: 3px 6px;
+  background: var(--tx-blue-pale);
+  border: 1px solid var(--tx-border-soft);
+}
+.tx-kv td {
+  padding: 3px 6px;
+  background: var(--tx-white);
+  border: 1px solid var(--tx-border-soft);
+}
+
+/* --------------------------------------------------------------------------
+   12. Φόρμες
+   -------------------------------------------------------------------------- */
+.tx-fieldset {
+  border: 1px solid var(--tx-border-soft);
+  background: var(--tx-white);
+  padding: 10px 12px;
+  margin: 0 0 12px;
+}
+.tx-fieldset > legend {
+  padding: 1px 6px;
+  background: var(--tx-teal);
+  color: var(--tx-white);
+  font-weight: bold;
+  font-size: var(--tx-fs);
+}
+
+.tx-field {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0 0 6px;
+}
+.tx-field > .tx-label {
+  flex: 0 0 190px;
+  padding-top: 3px;
+  font-weight: bold;
+  color: var(--tx-ink);
+}
+.tx-field__control { flex: 1 1 auto; min-width: 0; }
+.tx-field--stack { display: block; }
+.tx-field--stack > .tx-label { display: block; margin-bottom: 2px; }
+.tx-req { color: var(--tx-red); font-weight: bold; }
+.tx-hint { display: block; color: #7A7A7A; font-size: var(--tx-fs-sm); margin-top: 2px; }
+.tx-error-msg { display: block; color: var(--tx-red); font-weight: bold; margin-top: 2px; }
+
+.tx-input,
+.tx-select,
+.tx-textarea {
+  font-family: var(--tx-font);
+  font-size: var(--tx-fs);
+  color: var(--tx-ink);
+  background: var(--tx-white);
+  border: 1px solid var(--tx-field-border);
+  border-radius: 0;
+  padding: 2px 4px;
+  max-width: 100%;
+}
+.tx-input:focus,
+.tx-select:focus,
+.tx-textarea:focus {
+  border-color: var(--tx-teal);
+  background: #FBFEFF;
+  outline: none;
+  box-shadow: 0 0 0 1px var(--tx-teal-pale);
+}
+.tx-input[disabled],
+.tx-select[disabled],
+.tx-textarea[disabled],
+.tx-input[readonly] {
+  background: #ECECEC;
+  color: #6B6B6B;
+}
+.tx-input--sm { width: 90px; }
+.tx-input--md { width: 200px; }
+.tx-input--lg { width: 100%; }
+.tx-textarea { width: 100%; min-height: 70px; }
+.tx-input.tx-is-invalid,
+.tx-select.tx-is-invalid,
+.tx-textarea.tx-is-invalid {
+  border-color: var(--tx-red);
+  background: var(--tx-red-bg);
+}
+
+.tx-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-right: 14px;
+  cursor: pointer;
+}
+.tx-check input { margin: 0; }
+.tx-checklist { display: flex; flex-direction: column; gap: 3px; }
+
+.tx-btnbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 6px 8px;
+  background: var(--tx-blue-bar);
+  border: 1px solid var(--tx-border-soft);
+  margin: 0 0 12px;
+}
+.tx-btnbar--right { justify-content: flex-end; }
+.tx-btnbar--plain { background: none; border: 0; padding: 0; }
+
+/* --------------------------------------------------------------------------
+   13. Κουμπιά
+   -------------------------------------------------------------------------- */
+.tx-btn {
+  display: inline-block;
+  font-family: var(--tx-font);
+  font-size: var(--tx-fs);
+  font-weight: bold;
+  color: var(--tx-ink);
+  text-decoration: none;
+  padding: 3px 12px;
+  border: 1px solid #8A8A8A;
+  border-radius: 0;
+  background: linear-gradient(180deg, #FDFDFD 0%, #E4E4E4 55%, #D6D6D6 100%);
+  cursor: pointer;
+  box-shadow: inset 0 1px 0 #FFFFFF;
+}
+.tx-btn:hover { background: linear-gradient(180deg, #FFFFFF 0%, #EDEDED 55%, #DFDFDF 100%); color: var(--tx-ink); }
+.tx-btn:active { background: #D2D2D2; box-shadow: inset 0 1px 2px rgba(0,0,0,.3); }
+.tx-btn[disabled],
+.tx-btn.tx-is-disabled {
+  color: #9A9A9A;
+  background: #EDEDED;
+  border-color: #C0C0C0;
+  cursor: default;
+  box-shadow: none;
+}
+.tx-btn--primary {
+  color: var(--tx-white);
+  border-color: var(--tx-teal-dark);
+  background: linear-gradient(180deg, #56A3B4 0%, var(--tx-teal) 55%, var(--tx-teal-dark) 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.35);
+}
+.tx-btn--primary:hover { color: var(--tx-white); background: linear-gradient(180deg, #63B2C2 0%, #4995A6 55%, #2F7F94 100%); }
+.tx-btn--danger {
+  color: var(--tx-white);
+  border-color: #8E1D14;
+  background: linear-gradient(180deg, #D0503F 0%, var(--tx-red) 60%, #94180F 100%);
+}
+.tx-btn--danger:hover { color: var(--tx-white); }
+.tx-btn--sm { padding: 1px 7px; font-size: var(--tx-fs-sm); }
+.tx-btn--link {
+  background: none; border: 0; box-shadow: none;
+  color: var(--tx-link); text-decoration: underline;
+  padding: 2px 4px; font-weight: bold;
+}
+.tx-btn--link:hover { background: none; color: var(--tx-link-hover); }
+
+/* --------------------------------------------------------------------------
+   14. Tabs περιεχομένου
+   -------------------------------------------------------------------------- */
+.tx-tabs { margin: 0 0 12px; }
+.tx-tabs__list {
+  display: flex;
+  gap: 2px;
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 4px;
+  border-bottom: 1px solid var(--tx-border);
+}
+.tx-tabs__btn {
+  font: bold var(--tx-fs)/1.4 var(--tx-font);
+  color: var(--tx-link);
+  background: linear-gradient(180deg, #F4F4F4 0%, #DFE7E9 100%);
+  border: 1px solid var(--tx-border-soft);
+  border-bottom: 0;
+  padding: 3px 12px;
+  cursor: pointer;
+  position: relative;
+  top: 1px;
+}
+.tx-tabs__btn:hover { color: var(--tx-orange); }
+.tx-tabs__btn[aria-selected="true"] {
+  background: var(--tx-content-bg);
+  border-color: var(--tx-border);
+  color: var(--tx-orange);
+  padding-bottom: 4px;
+}
+.tx-tabs__panel {
+  border: 1px solid var(--tx-border);
+  border-top: 0;
+  padding: 10px 12px;
+  background: var(--tx-content-bg);
+}
+
+/* --------------------------------------------------------------------------
+   15. Accordion
+   -------------------------------------------------------------------------- */
+.tx-acc { border: 1px solid var(--tx-border); margin: 0 0 12px; }
+.tx-acc__item + .tx-acc__item { border-top: 1px solid var(--tx-border-soft); }
+.tx-acc__btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  text-align: left;
+  font: bold var(--tx-fs)/1.4 var(--tx-font);
+  color: var(--tx-ink);
+  background: var(--tx-blue-pale);
+  border: 0;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+.tx-acc__btn::before {
+  content: "";
+  width: 0; height: 0;
+  border-left: 6px solid var(--tx-orange);
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  transition: transform .12s linear;
+}
+.tx-acc__btn[aria-expanded="true"] { background: var(--tx-teal-light); color: var(--tx-white); }
+.tx-acc__btn[aria-expanded="true"]::before { border-left-color: var(--tx-white); transform: rotate(90deg); }
+.tx-acc__panel { padding: 8px 10px; background: var(--tx-white); }
+
+/* --------------------------------------------------------------------------
+   16. Steps / wizard
+   -------------------------------------------------------------------------- */
+.tx-steps {
+  display: flex;
+  list-style: none;
+  margin: 0 0 12px;
+  padding: 0;
+  border: 1px solid var(--tx-border-soft);
+  background: var(--tx-white);
+  overflow: hidden;
+}
+.tx-steps__item {
+  flex: 1 1 0;
+  padding: 4px 8px 4px 18px;
+  font-size: var(--tx-fs-sm);
+  color: #7A7A7A;
+  background: #F0F3F3;
+  position: relative;
+}
+.tx-steps__item + .tx-steps__item { border-left: 1px solid var(--tx-border-soft); }
+.tx-steps__item b { display: block; font-size: var(--tx-fs); color: inherit; }
+.tx-steps__item--done { background: var(--tx-olive-bg); color: var(--tx-green); }
+.tx-steps__item--current { background: var(--tx-teal-light); color: var(--tx-white); }
+.tx-steps__item--current b { color: var(--tx-white); }
+
+/* --------------------------------------------------------------------------
+   17. Pagination
+   -------------------------------------------------------------------------- */
+.tx-pager {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  list-style: none;
+  margin: 0 0 12px;
+  padding: 4px 6px;
+  background: var(--tx-blue-bar);
+  border: 1px solid var(--tx-border-soft);
+  font-size: var(--tx-fs-sm);
+}
+.tx-pager__link {
+  display: inline-block;
+  min-width: 17px;
+  padding: 1px 5px;
+  text-align: center;
+  text-decoration: none;
+  color: var(--tx-link);
+  background: var(--tx-white);
+  border: 1px solid var(--tx-border-soft);
+  font-weight: bold;
+}
+.tx-pager__link:hover { color: var(--tx-white); background: var(--tx-teal); border-color: var(--tx-teal-dark); }
+.tx-pager__item--active .tx-pager__link {
+  color: var(--tx-white);
+  background: var(--tx-teal-light);
+  border-color: var(--tx-teal-dark);
+}
+.tx-pager__info { margin-left: auto; color: var(--tx-ink-soft); }
+
+/* --------------------------------------------------------------------------
+   18. Badges / status
+   -------------------------------------------------------------------------- */
+.tx-badge {
+  display: inline-block;
+  padding: 0 5px;
+  font-size: var(--tx-fs-sm);
+  font-weight: bold;
+  color: var(--tx-white);
+  background: var(--tx-teal);
+  border: 1px solid var(--tx-teal-dark);
+}
+.tx-badge--success { background: var(--tx-green); border-color: #35591D; }
+.tx-badge--warn { background: #B9A24A; border-color: #8C7A32; color: #1A1A1A; }
+.tx-badge--error { background: var(--tx-red); border-color: #7E170F; }
+.tx-badge--muted { background: #DCDCDC; border-color: var(--tx-border-soft); color: var(--tx-ink-soft); }
+
+/* --------------------------------------------------------------------------
+   19. Modal
+   -------------------------------------------------------------------------- */
+.tx-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 60px 12px 12px;
+  background: rgba(20,40,50,.45);
+  z-index: 999;
+}
+.tx-modal.tx-is-open { display: flex; }
+.tx-modal__dialog {
+  width: 460px;
+  max-width: 100%;
+  background: var(--tx-content-bg);
+  border: 1px solid var(--tx-border);
+  box-shadow: 3px 3px 0 rgba(0,0,0,.25);
+}
+.tx-modal__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 3px 6px;
+  background: linear-gradient(180deg, var(--tx-teal-dark) 0%, #3E8A9C 100%);
+  color: var(--tx-white);
+  font-weight: bold;
+}
+.tx-modal__close {
+  border: 1px solid rgba(255,255,255,.6);
+  background: rgba(255,255,255,.15);
+  color: var(--tx-white);
+  font: bold 11px/1 var(--tx-font);
+  padding: 1px 5px;
+  cursor: pointer;
+}
+.tx-modal__body { padding: 12px; }
+.tx-modal__foot {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+  padding: 6px 8px;
+  background: var(--tx-blue-bar);
+  border-top: 1px solid var(--tx-border-soft);
+}
+
+/* --------------------------------------------------------------------------
+   20. Tooltip
+   -------------------------------------------------------------------------- */
+.tx-tip { position: relative; border-bottom: 1px dotted var(--tx-teal); cursor: help; }
+.tx-tip::after {
+  content: attr(data-tx-tip);
+  position: absolute;
+  left: 0; bottom: 100%;
+  margin-bottom: 4px;
+  min-width: 140px; max-width: 240px;
+  padding: 4px 6px;
+  background: var(--tx-yellow);
+  border: 1px solid #8A7A00;
+  color: var(--tx-ink);
+  font-size: var(--tx-fs-sm);
+  font-weight: normal;
+  line-height: 1.4;
+  text-align: left;
+  display: none;
+  z-index: 50;
+}
+.tx-tip:hover::after,
+.tx-tip:focus-visible::after { display: block; }
+
+/* --------------------------------------------------------------------------
+   21. Toast
+   -------------------------------------------------------------------------- */
+.tx-toasts {
+  position: fixed;
+  right: 10px; top: 10px;
+  width: 260px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.tx-toast {
+  border: 1px solid var(--tx-border);
+  background: var(--tx-yellow);
+  padding: 6px 8px;
+  font-size: var(--tx-fs);
+  box-shadow: 2px 2px 0 rgba(0,0,0,.2);
+  animation: tx-toast-in .15s ease-out;
+}
+.tx-toast--success { background: var(--tx-green-bg); border-color: var(--tx-green-line); }
+.tx-toast--error { background: var(--tx-red-bg); border-color: var(--tx-red-line); }
+@keyframes tx-toast-in { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+
+/* --------------------------------------------------------------------------
+   22. Loading
+   -------------------------------------------------------------------------- */
+.tx-loading {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: bold;
+  color: var(--tx-ink-soft);
+}
+.tx-loading::before {
+  content: "";
+  width: 12px; height: 12px;
+  border: 2px solid var(--tx-teal-pale);
+  border-top-color: var(--tx-teal-dark);
+  border-radius: 50%;
+  animation: tx-spin .7s linear infinite;
+}
+@keyframes tx-spin { to { transform: rotate(360deg); } }
+.tx-bar {
+  height: 12px;
+  border: 1px solid var(--tx-border-soft);
+  background: var(--tx-white);
+  padding: 1px;
+}
+.tx-bar__fill {
+  height: 100%;
+  background: repeating-linear-gradient(135deg, #4E9DAE 0 6px, #3E8A9C 6px 12px);
+}
+
+/* --------------------------------------------------------------------------
+   23. Footer
+   -------------------------------------------------------------------------- */
+.tx-footer {
+  padding: 6px 10px;
+  background: var(--tx-blue-bar);
+  border-top: 1px solid var(--tx-border-soft);
+  font-size: var(--tx-fs-sm);
+  color: var(--tx-ink-soft);
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* --------------------------------------------------------------------------
+   24. Responsive (το πρωτότυπο ήταν fixed-width· εδώ απλή υποχώρηση)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1010px) {
+  .tx-frame { width: 100%; }
+  .tx-layout { flex-wrap: wrap; }
+  .tx-sidebar { flex-basis: 100%; width: 100%; border-right: 0; }
+  .tx-cols { flex-wrap: wrap; }
+  .tx-aside { flex-basis: 100%; width: 100%; }
+  .tx-nav__list { flex-wrap: wrap; justify-content: flex-start; }
+  .tx-field { flex-wrap: wrap; }
+  .tx-field > .tx-label { flex-basis: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tx-page *, .tx-page *::before, .tx-page *::after {
+    animation-duration: .001ms !important;
+    transition-duration: .001ms !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   25. Print
+   -------------------------------------------------------------------------- */
+@media print {
+  .tx-page { background: #FFF; }
+  .tx-nav, .tx-sidebar, .tx-btnbar, .tx-strip__close, .tx-toasts { display: none !important; }
+  .tx-frame { width: auto; border: 0; }
+  .tx-box, .tx-table, .tx-help { border-color: #000; }
+}

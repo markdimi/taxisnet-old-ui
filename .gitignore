@@ -1,0 +1,6 @@
+.DS_Store
+node_modules/
+*.log
+# προσωπικά screenshots / δεδομένα — να μην ανέβουν ποτέ
+screenshots/
+*private*
